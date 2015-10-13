@@ -12,9 +12,9 @@ Enhances the featured image data returned on the post object by the REST API to 
 
 == Description ==
 
-By default the REST API returns a `featured_image` field on the post object, but this field is simply the image ID.
+The REST API returns a `featured_image` field on the post object by default, but this field is simply the image ID.
 
-This plugin adds a `better_featured_image` field to the post object that contains the available sizes and urls, allowing you to get this information without making a second request.
+This plugin adds a `better_featured_image` field to the post object that contains the available image sizes and urls, allowing you to get this information without making a second request.
 
 It takes this:
 
@@ -87,6 +87,8 @@ And turns it into this:
 
 The format of the response is nearly identical to what you would get sending a request to `/wp-json/wp/v2/media/13`.
 
+I've done some basic performance tests that indicate the difference in response times with and without this plugin to be about 10-15ms for a collection of 10 posts and 0-5ms for a single post. For me this is much faster than making a second request to `/media/`, especially for multiple posts.
+
 This plugin is on [on Github](https://github.com/BraadMartin/better-rest-api-featured-images "Better REST API Featured Images") and pull requests are always welcome. :)
 
 == Installation ==
@@ -94,11 +96,11 @@ This plugin is on [on Github](https://github.com/BraadMartin/better-rest-api-fea
 = Manual Installation =
 
 1. Upload the entire `/better-rest-api-featured-images` directory to the `/wp-content/plugins/` directory.
-1. Activate Better REST API Featured Images through the 'Plugins' menu in WordPress.
+1. Activate 'Better REST API Featured Images' through the 'Plugins' menu in WordPress.
 
 = Better Installation =
 
-1. Go to Plugins > Add New in your WordPress admin and search for Better REST API Featured Images.
+1. Go to Plugins > Add New in your WordPress admin and search for 'Better REST API Featured Images'.
 1. Click Install.
 
 == Frequently Asked Questions ==
