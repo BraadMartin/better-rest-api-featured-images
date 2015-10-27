@@ -4,7 +4,7 @@
 **Tags:** featured, images, post, thumbnail, rest, api, better  
 **Requires at least:** 4.0  
 **Tested up to:** 4.3  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.0.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -85,7 +85,7 @@ And turns it into this:
 	},
 
 
-The format of the response is nearly identical to what you would get sending a request to `/wp-json/wp/v2/media/13`.
+The format of the response is nearly identical to what you would get sending a request to `/wp-json/wp/v2/media/13`. When no featured image has been set on the post the `better_featured_image` field will have a value of `null`.
 
 I've done some basic performance tests that indicate the difference in response times with and without this plugin to be about 10-15ms for a collection of 10 posts and 0-5ms for a single post. For me this is much faster than making a second request to `/media/`, especially for multiple posts.
 
@@ -119,10 +119,16 @@ The `featured_image` field is a core field, and other applications might expect 
 
 ## Changelog ##
 
+### 1.0.1 ###
+* Switch to returning null instead of 0 when no featured image is present
+
 ### 1.0.0 ###
 * First Release
 
 ## Upgrade Notice ##
+
+### 1.0.1 ###
+* Switch to returning null instead of 0 when no featured image is present
 
 ### 1.0.0 ###
 * First Release

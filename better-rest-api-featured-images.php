@@ -10,7 +10,7 @@
  * Plugin Name:         Better REST API Featured Images
  * Plugin URI:          https://wordpress.org/plugins/better-rest-api-featured-images/
  * Description:         Enhances the featured image data returned on the post object by the REST API to include urls for all available sizes and other useful image data.
- * Version:             1.0.0
+ * Version:             1.0.1
  * Author:              Braad Martin
  * Author URI:          http://braadmartin.com
  * License:             GPL-2.0+
@@ -64,13 +64,13 @@ function better_rest_api_featured_images_get_field( $object, $field_name, $reque
 	if ( $object['featured_image'] ) {
 		$image_id = (int)$object['featured_image'];
 	} else {
-		return 0;
+		return null;
 	}
 
 	$image = get_post( $image_id );
 
 	if ( ! $image ) {
-		return 0;
+		return null;
 	}
 
 	// This is taken from WP_REST_Attachments_Controller::prepare_item_for_response().
