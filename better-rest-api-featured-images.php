@@ -40,13 +40,24 @@ function better_rest_api_featured_images_init() {
 		// and supports featured images.
 		if ( $show_in_rest && $supports_thumbnail ) {
 
-			register_rest_field( $post_type_name,
-				'better_featured_image',
-				array(
-					'get_callback' => 'better_rest_api_featured_images_get_field',
-					'schema'       => null,
-				)
-			);
+			// Compatibility with the REST API v2 beta 9+
+			if ( function_exists( 'register_rest_field' ) ) {
+				register_rest_field( $post_type_name,
+					'better_featured_image',
+					array(
+						'get_callback' => 'better_rest_api_featured_images_get_field',
+						'schema'       => null,
+					)
+				);
+			} elseif ( function_exists( 'register_api_field' ) ) {
+				register_rest_field( $post_type_name,
+					'better_featured_image',
+					array(
+						'get_callback' => 'better_rest_api_featured_images_get_field',
+						'schema'       => null,
+					)
+				);
+			}
 		}
 	}
 }
