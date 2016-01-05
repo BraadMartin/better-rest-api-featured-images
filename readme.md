@@ -3,8 +3,8 @@
 **Donate link:** http://braadmartin.com/  
 **Tags:** featured, images, post, thumbnail, rest, api, better  
 **Requires at least:** 4.0  
-**Tested up to:** 4.3  
-**Stable tag:** 1.0.1  
+**Tested up to:** 4.4  
+**Stable tag:** 1.0.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -119,6 +119,9 @@ The `featured_image` field is a core field, and other applications might expect 
 
 ## Changelog ##
 
+### 1.0.2 ###
+* Change register_api_field to register_rest_field for compatibility with the REST API v2 beta 9. Props: Soean
+
 ### 1.0.1 ###
 * Switch to returning null instead of 0 when no featured image is present
 
@@ -126,6 +129,9 @@ The `featured_image` field is a core field, and other applications might expect 
 * First Release
 
 ## Upgrade Notice ##
+
+### 1.0.2 ###
+* Change register_api_field to register_rest_field for compatibility with the REST API v2 beta 9. Props: Soean
 
 ### 1.0.1 ###
 * Switch to returning null instead of 0 when no featured image is present
