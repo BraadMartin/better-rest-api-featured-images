@@ -40,7 +40,7 @@ function better_rest_api_featured_images_init() {
 		// and supports featured images.
 		if ( $show_in_rest && $supports_thumbnail ) {
 
-			register_api_field( $post_type_name,
+			register_rest_field( $post_type_name,
 				'better_featured_image',
 				array(
 					'get_callback' => 'better_rest_api_featured_images_get_field',
