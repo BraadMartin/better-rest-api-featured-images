@@ -93,6 +93,7 @@ function better_rest_api_featured_images_get_field( $object, $field_name, $reque
 	$featured_image['media_details'] = wp_get_attachment_metadata( $image_id );
 	$featured_image['post']          = ! empty( $image->post_parent ) ? (int) $image->post_parent : null;
 	$featured_image['source_url']    = wp_get_attachment_url( $image_id );
+	$featured_image['base64']        = 'data:image/'.pathinfo(wp_get_attachment_url( $image_id ), PATHINFO_EXTENSION).';base64,'.base64_encode(file_get_contents(wp_get_attachment_url( $image_id )));
 
 	if ( empty( $featured_image['media_details'] ) ) {
 		$featured_image['media_details'] = new stdClass;
