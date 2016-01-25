@@ -4,7 +4,7 @@
 **Tags:** featured, images, post, thumbnail, rest, api, better  
 **Requires at least:** 4.0  
 **Tested up to:** 4.4  
-**Stable tag:** 1.0.2  
+**Stable tag:** 1.1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -89,6 +89,32 @@ The format of the response is nearly identical to what you would get sending a r
 
 I've done some basic performance tests that indicate the difference in response times with and without this plugin to be about 10-15ms for a collection of 10 posts and 0-5ms for a single post. For me this is much faster than making a second request to `/media/`, especially for multiple posts.
 
+As of version 1.1.0, there is a filter `better_rest_api_featured_image` that allows you to add custom data to the better_featured_image field. The filter is directly on the return value of the function that returns the better_featured_image field. This can be used to do things like add custom image meta or an SVG version of the image to the response. Here's an example of how you might use it:
+
+
+	add_filter( 'better_rest_api_featured_image', 'xxx_modify_rest_api_featured_image', 10, 2 );
+	/**
+	 * Modify the Better REST API Featured Image response.
+	 *
+	 * @param   array  $featured_image  The array of image data.
+	 * @param   int    $image_id        The image ID.
+	 *
+	 * @return  array                   The modified image data.
+	 */
+	function xxx_modify_rest_api_featured_image( $featured_image, $image_id ) {
+	
+	  // Add an extra_data_string field with a string value.
+	  $featured_image['extra_data_string'] = 'A custom value.';
+	
+	  // Add an extra_data_array field with an array value.
+	  $featured_image['extra_data_array'] = array(
+	    'custom_key' => 'A custom value.',
+	  );
+	
+	  return $featured_image;
+	}
+
+
 This plugin is on [on Github](https://github.com/BraadMartin/better-rest-api-featured-images "Better REST API Featured Images") and pull requests are always welcome. :)
 
 ## Installation ##
@@ -119,6 +145,9 @@ The `featured_image` field is a core field, and other applications might expect 
 
 ## Changelog ##
 
+### 1.1.0 ###
+* Add a better_rest_api_featured_image filter for adding custom data to the response. Props: avishayil
+
 ### 1.0.2 ###
 * Change register_api_field to register_rest_field for compatibility with the REST API v2 beta 9. Props: Soean
 
@@ -129,6 +158,9 @@ The `featured_image` field is a core field, and other applications might expect 
 * First Release
 
 ## Upgrade Notice ##
+
+### 1.1.0 ###
+* Add a better_rest_api_featured_image filter for adding custom data to the response. Props: avishayil
 
 ### 1.0.2 ###
 * Change register_api_field to register_rest_field for compatibility with the REST API v2 beta 9. Props: Soean
