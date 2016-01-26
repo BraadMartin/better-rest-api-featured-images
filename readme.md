@@ -12,20 +12,20 @@ Enhances the featured image data returned on the post object by the REST API to 
 
 ## Description ##
 
-The REST API returns a `featured_image` field on the post object by default, but this field is simply the image ID.
+The REST API returns a `featured_media` field on the post object by default, but this field is simply the image ID.
 
 This plugin adds a `better_featured_image` field to the post object that contains the available image sizes and urls, allowing you to get this information without making a second request.
 
 It takes this:
 
 
-	"featured_image": 13,
+	"featured_media": 13,
 
 
 And turns it into this:
 
 
-	"featured_image": 13,
+	"featured_media": 13,
 	"better_featured_image": {
 	    "id": 13,
 	    "alt_text": "Hot Air Balloons",
@@ -139,9 +139,9 @@ The WP REST API includes a filter on the response data it returns, and this plug
 
 The plugin loads on `init` at priority 12, in order to come after any custom post types have been registered.
 
-### Why doesn't the plugin replace the default `featured_image` field? ###
+### Why doesn't the plugin replace the default `featured_media` field? ###
 
-The `featured_image` field is a core field, and other applications might expect it to always be an integer value. To avoid any issues, this plugin includes the extra data under the `better_featured_image` field name.
+The `featured_media` field is a core field, and other applications might expect it to always be an integer value. To avoid any issues, this plugin includes the extra data under the `better_featured_image` field name.
 
 ## Changelog ##
 

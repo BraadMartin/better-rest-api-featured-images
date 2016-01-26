@@ -72,8 +72,8 @@ function better_rest_api_featured_images_init() {
 function better_rest_api_featured_images_get_field( $object, $field_name, $request ) {
 
 	// Only proceed if the post has a featured image.
-	if ( $object['featured_image'] ) {
-		$image_id = (int)$object['featured_image'];
+	if ( $object['featured_media'] ) {
+		$image_id = (int)$object['featured_media'];
 	} else {
 		return null;
 	}
