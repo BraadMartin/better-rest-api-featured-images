@@ -1,6 +1,6 @@
 {
   "name": "better-rest-api-featured-images",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Enhances the featured image data returned on the post object by the REST API to include urls for all available sizes and other useful image data.",
   "main": "Gruntfile.js",
   "scripts": {

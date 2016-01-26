@@ -4,7 +4,7 @@ Donate link: http://braadmartin.com/
 Tags: featured, images, post, thumbnail, rest, api, better
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Enhances the featured image data returned on the post object by the REST API to 
 
 == Description ==
 
-The REST API returns a `featured_media` field on the post object by default, but this field is simply the image ID.
+Version 2 of the WordPress REST API returns a `featured_media` field (formerly featured_image) on the post object by default, but this field is simply the image ID.
 
 This plugin adds a `better_featured_image` field to the post object that contains the available image sizes and urls, allowing you to get this information without making a second request.
 
@@ -143,7 +143,14 @@ The plugin loads on `init` at priority 12, in order to come after any custom pos
 
 The `featured_media` field is a core field, and other applications might expect it to always be an integer value. To avoid any issues, this plugin includes the extra data under the `better_featured_image` field name.
 
+= Why is the core field called `featured_media` but the plugin field is `better_featured_image`? =
+
+Prior to V2 Beta 11 of the REST API the core field was called `featured_image`. As of Beta 11 this field was changed to `featured_media`, with the idea that at some point in the future there may be additional media items included on this field beyond the featured image. Version 1.1.1 of this plugin is compatible with both Beta 11 and all previous versions of V2.
+
 == Changelog ==
+
+= 1.1.1 =
+* Compatibility with v2 beta 11 of the REST API (now the core field is called featured_media; this plugin's field is still better_featured_image). Props: filose
 
 = 1.1.0 =
 * Add a better_rest_api_featured_image filter for adding custom data to the response. Props: avishayil
@@ -158,6 +165,9 @@ The `featured_media` field is a core field, and other applications might expect 
 * First Release
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+* Compatibility with v2 beta 11 of the REST API (now the core field is called featured_media; this plugin's field is still better_featured_image). Props: filose
 
 = 1.1.0 =
 * Add a better_rest_api_featured_image filter for adding custom data to the response. Props: avishayil
