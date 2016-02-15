@@ -4,13 +4,15 @@ Donate link: http://braadmartin.com/
 Tags: featured, images, post, thumbnail, rest, api, better
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhances the featured image data returned on the post object by the REST API to include urls for all available sizes and other useful image data.
+Adds a top-level field with featured image data including available sizes and URLs to the post object returned by the REST API.
 
 == Description ==
+
+**Note:** You probably do not need this plugin. The REST API already supports adding the query param `?_embed` to your URL and the response will then include all "embedded media", including the featured image, and the data you get there is exactly what this plugin gives you. The only reasons to use this plugin at this point are if you prefer to have the featured image data in a top level field in the response rather than among other embedded media in the "_embedded" field, and if you _always_ want the featured image data in the response rather than having to ask for it with `?_embed`. I still use this plugin because I do usually want both these things, but definitely give `?_embed` a try before using this plugin. :)
 
 Version 2 of the WordPress REST API returns a `featured_media` field (formerly featured_image) on the post object by default, but this field is simply the image ID.
 
@@ -85,7 +87,7 @@ And turns it into this:
 },
 `
 
-The format of the response is nearly identical to what you would get sending a request to `/wp-json/wp/v2/media/13`. When no featured image has been set on the post the `better_featured_image` field will have a value of `null`.
+The format of the response is nearly identical to what you would get sending a request to `/wp-json/wp/v2/media/13` or using `?_embed`. When no featured image has been set on the post the `better_featured_image` field will have a value of `null`.
 
 I've done some basic performance tests that indicate the difference in response times with and without this plugin to be about 10-15ms for a collection of 10 posts and 0-5ms for a single post. For me this is much faster than making a second request to `/media/`, especially for multiple posts.
 
@@ -149,6 +151,13 @@ Prior to V2 Beta 11 of the REST API the core field was called `featured_image`. 
 
 == Changelog ==
 
+= 1.2.0 =
+* Fix translation files present but not loading
+* Add note to the readme explaining that `?_embed` should be tried before using this plugin
+* Fix compat with older betas
+* Add missing PHPDoc statements
+* Tested with v2 beta 12
+
 = 1.1.1 =
 * Compatibility with v2 beta 11 of the REST API (now the core field is called featured_media; this plugin's field is still better_featured_image). Props: filose
 
@@ -165,6 +174,13 @@ Prior to V2 Beta 11 of the REST API the core field was called `featured_image`. 
 * First Release
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+* Fix translation files present but not loading
+* Add note to the readme explaining that `?_embed` should be tried before using this plugin
+* Fix compat with older betas
+* Add missing PHPDoc statements
+* Tested with v2 beta 12
 
 = 1.1.1 =
 * Compatibility with v2 beta 11 of the REST API (now the core field is called featured_media; this plugin's field is still better_featured_image). Props: filose

@@ -9,8 +9,8 @@
  * @wordpress-plugin
  * Plugin Name:         Better REST API Featured Images
  * Plugin URI:          https://wordpress.org/plugins/better-rest-api-featured-images/
- * Description:         Enhances the featured image data returned on the post object by the REST API to include urls for all available sizes and other useful image data.
- * Version:             1.1.1
+ * Description:         Adds a top-level field with featured image data including available sizes and URLs to the post object returned by the REST API.
+ * Version:             1.2.0
  * Author:              Braad Martin
  * Author URI:          http://braadmartin.com
  * License:             GPL-2.0+
@@ -18,6 +18,16 @@
  * Text Domain:         better-rest-api-featured-images
  * Domain Path:         /languages
  */
+
+add_action( 'plugins_loaded', 'better_rest_api_featured_images_load_translations' );
+/**
+ * Load translation files.
+ *
+ * @since  1.2.0
+ */
+function better_rest_api_featured_images_load_translations() {
+    load_plugin_textdomain( 'better-rest-api-featured-images', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
 
 add_action( 'init', 'better_rest_api_featured_images_init', 12 );
 /**
@@ -50,7 +60,7 @@ function better_rest_api_featured_images_init() {
 					)
 				);
 			} elseif ( function_exists( 'register_api_field' ) ) {
-				register_rest_field( $post_type_name,
+				register_api_field( $post_type_name,
 					'better_featured_image',
 					array(
 						'get_callback' => 'better_rest_api_featured_images_get_field',
@@ -66,6 +76,10 @@ function better_rest_api_featured_images_init() {
  * Return the better_featured_image field.
  *
  * @since   1.0.0
+ *
+ * @param   object  $object      The response object.
+ * @param   string  $field_name  The name of the field to add.
+ * @param   object  $request     The WP_REST_Request object.
  *
  * @return  object|null
  */
