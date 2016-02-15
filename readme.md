@@ -12,7 +12,7 @@ Adds a top-level field with featured image data including available sizes and UR
 
 ## Description ##
 
-**Note:** You probably do not need this plugin. The REST API already supports adding the query param `?_embed` to your URL and the response will then include all "embedded media", including the featured image, and the data you get there is exactly what this plugin gives you. The only reasons to use this plugin at this point are if you prefer to have the featured image data in a top level field in the response rather than among other embedded media in the "_embedded" field, and if you _always_ want the featured image data in the response rather than having to ask for it with `?_embed`. I still use this plugin because I do usually want both these things, but definitely give `?_embed` a try before using this plugin. :)
+**Note:** You probably do not need this plugin. The REST API already supports adding the query param `?_embed` to your URL and the response will then include all "embedded media", including the featured image, and the data you get there is exactly what this plugin gives you. The only reasons to use this plugin at this point are if you prefer to have the featured image data in a top level field in the response rather than among other embedded media in the `_embedded` field, and if you _always_ want the featured image data in the response rather than having to ask for it with `?_embed`. I still use this plugin because I do usually want both these things, but definitely give `?_embed` a try before using this plugin. :)
 
 Version 2 of the WordPress REST API returns a `featured_media` field (formerly featured_image) on the post object by default, but this field is simply the image ID.
 
