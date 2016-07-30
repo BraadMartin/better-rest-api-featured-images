@@ -3,8 +3,8 @@ Contributors: Braad
 Donate link: http://braadmartin.com/
 Tags: featured, images, post, thumbnail, rest, api, better
 Requires at least: 4.0
-Tested up to: 4.4
-Stable tag: 1.2.0
+Tested up to: 4.6
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -151,6 +151,9 @@ Prior to V2 Beta 11 of the REST API the core field was called `featured_image`. 
 
 == Changelog ==
 
+= 1.2.1 =
+* Add fix for bug caused by conflicts with plugins that manipulate image metadata
+
 = 1.2.0 =
 * Fix translation files present but not loading
 * Add note to the readme explaining that `?_embed` should be tried before using this plugin
@@ -174,6 +177,9 @@ Prior to V2 Beta 11 of the REST API the core field was called `featured_image`. 
 * First Release
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+* Add fix for bug caused by conflicts with plugins that manipulate image metadata
 
 = 1.2.0 =
 * Fix translation files present but not loading

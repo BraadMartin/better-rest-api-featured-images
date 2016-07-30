@@ -10,7 +10,7 @@
  * Plugin Name:         Better REST API Featured Images
  * Plugin URI:          https://wordpress.org/plugins/better-rest-api-featured-images/
  * Description:         Adds a top-level field with featured image data including available sizes and URLs to the post object returned by the REST API.
- * Version:             1.2.0
+ * Version:             1.2.1
  * Author:              Braad Martin
  * Author URI:          http://braadmartin.com
  * License:             GPL-2.0+
@@ -89,6 +89,7 @@ function better_rest_api_featured_images_get_field( $object, $field_name, $reque
 	if ( ! empty( $object['featured_media'] ) ) {
 		$image_id = (int)$object['featured_media'];
 	} elseif ( ! empty( $object['featured_image'] ) ) {
+		// This was added for backwards compatibility with < WP REST API v2 Beta 11.
 		$image_id = (int)$object['featured_image'];
 	} else {
 		return null;
@@ -121,6 +122,11 @@ function better_rest_api_featured_images_get_field( $object, $field_name, $reque
 			}
 			$size_data['source_url'] = $image_src[0];
 		}
+	} elseif ( is_string( $featured_image['media_details'] ) ) {
+		// This was added to work around conflicts with plugins that cause
+		// wp_get_attachment_metadata() to return a string.
+		$featured_image['media_details'] = new stdClass();
+		$featured_image['media_details']->sizes = new stdClass();
 	} else {
 		$featured_image['media_details']['sizes'] = new stdClass;
 	}
